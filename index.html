@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			http-equiv="X-UA-Compatible"
+			content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>PokéDex</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css" />
+		<link
+			rel="stylesheet"
+			href="static/css/style.css" />
+	</head>
+	<body>
+		<header class="hero">
+			<div class="hero-body has-text-centered">
+				<h1 class="title is-1">PokéDex</h1>
+			</div>
+		</header>
+
+		<form>
+			<div class="container">
+				<div class="field has-addons">
+					<div class="control">
+						<input
+							type="text"
+							name="pokemon"
+							id="pokemon"
+							placeholder="Enter a Pokémon name"
+							autofocus
+							class="input is-medium is-rounded" />
+					</div>
+					<div class="control">
+						<input
+							type="button"
+							value="Search"
+							id="Invio"
+							class="button is-info is-medium is-rounded" />
+					</div>
+				</div>
+			</div>
+		</form>
+
+		<div
+			id="pokeimage"
+			class="container is-fluid"></div>
+
+		<script src="static/js/app.js"></script>
+	</body>
+</html>

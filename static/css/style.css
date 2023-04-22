@@ -1,0 +1,21 @@
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+#pokeimage {
+	text-align: center;
+}
+
+.title {
+	color: rgb(255, 56, 56);
+}
+
+#Invio {
+	background-color: rgb(255, 56, 56);
+}
+
+.input {
+	/*margin-top: 10vh;*/
+}
