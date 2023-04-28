@@ -33,11 +33,11 @@
 							id="pokemon"
 							placeholder="Enter a Pokémon name"
 							autofocus
-							class="input is-medium is-rounded" />
+							class="input is-medium is-rounded has-text-centered" />
 					</div>
 					<div class="control">
 						<input
-							type="button"
+							type="submit"
 							value="Search"
 							id="Invio"
 							class="button is-info is-medium is-rounded" />
@@ -48,7 +48,28 @@
 
 		<div
 			id="pokeimage"
-			class="container is-fluid"></div>
+			class="container is-fluid mt-6"></div>
+
+		<section
+			id="pokeData"
+			class="container section is-fluid">
+			<div class="container is-fluid">
+				<h2
+					id="pokeName"
+					class="subtitle is-2 has-text-centered"></h2>
+			</div>
+			<div class="container is-fluid">
+				<h3
+					id="pokeType"
+					class="subtitle is-3 has-text-centered"></h3>
+			</div>
+			<div
+				id="pokeMoves"
+				class="container content is-fluid"></div>
+			<div
+				id="pokeInfo"
+				class="container content is-fluid"></div>
+		</section>
 
 		<script src="static/js/app.js"></script>
 	</body>
