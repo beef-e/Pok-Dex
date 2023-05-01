@@ -1,16 +1,29 @@
-# Pok-Dex
+# PokéDex
 
-### A simply & straightforward online Pokédex 
+### A simply & straightforward online Pokédex
+
 ---
-The app uses the <a href="https://pokeapi.co/">PokéAPI RESTful API</a> to fetch and deploy data.
+
+This app was created to teach myself the use of APIs and their workflow. The first usable version is now available on GitHub Pages.
 <br>
-This app has been created to teach myself the use of APIs and their workflow. The first online-available version will be available soon.
-<br>
-#### TO-DO:
-* Define the basic structure of the pokédex and its layout
-* Improve the use of the API by adding more features
-* First online available version
-* Introduction of accounts and authentication
-* Creation of an App available on mobile
-------
-The styling of the app is possible thanks to the <a href="https://bulma.io/">Bulma</a> CSS Framework.
+
+### Features
+### View Pokémon Basic Stats
+HP/ATT/DEF/SP-ATT/SP-DEF
+### View Pokémon Basic Info
+Such as Weight, Height and Type
+#### Built with
+
+- <a href="https://pokeapi.co/">PokéAPI</a> - RESTful API for retrieving Pokemon data
+- <a href="https://bulma.io/">Bulma</a> - Frontend CSS Framework
+
+### Acknowledgments
+
+<a href="https://pokeapi.co/">PokéAPI</a> for providing the Pokemon data used in this project.
+
+#### Coming Soon:
+
+- Adding evolution Chain
+- Adding possibility to show multiple images of the Pokémon
+- Introduction of accounts and authentication
+- Creation of an App available on mobile
