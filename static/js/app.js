@@ -36,6 +36,7 @@ document.querySelector('form').addEventListener('submit', function (event) {
             document.querySelector('#pokeWeight').innerText = `Weight: ${s.weight/10} Kg`;
             document.querySelector('#pokeStats').innerHTML = `<ul><li>HP: ${s.stats[0].base_stat}</li> <li>Attack: ${s.stats[1].base_stat}</li> <li>Defense: ${s.stats[2].base_stat}</li> <li>Special Attack: ${s.stats[3].base_stat}</li> <li>Special Defense: ${s.stats[4].base_stat}</li> <li>Speed: ${s.stats[5].base_stat}</li></ul>`
             console.log(s.species.url);
+            
             fetch(s.species.url)
                 .then(function (response) {
                     return response.json();
@@ -43,19 +44,18 @@ document.querySelector('form').addEventListener('submit', function (event) {
                 })
 
                 .then(function (response) {
-                    let newLore
-                    newLore=response.flavor_text_entries[0].flavor_text.replace('\n', ' ')
-                    newLore=newLore.replace('\f', ' ')
-                    newLore=newLore.replace('POKéMON', 'Pokémon')
-                    console.log(newLore)
-                    document.querySelector('#pokeLore').innerText = `${newLore}`
+                    for(let i=0; i<response.flavor_text_entries.length; i++){
+                        if(response.flavor_text_entries[i].language.name=='en'){
+                            let newLore
+                            newLore=response.flavor_text_entries[i].flavor_text.replace('\n', ' ')
+                            newLore=newLore.replace('\f', ' ')
+                            newLore=newLore.replace('POKéMON', 'Pokémon')
+                            console.log(newLore)
+                            document.querySelector('#pokeLore').innerText = `${newLore}`
+                            i=response.flavor_text_entries.length
+                        }
+                    }
                 })
-
-
-
-
-
-
             //document.querySelector('#evolvesFrom').innerText = `Evolves from: ${s.species.name.charAt(0).toUpperCase() + s.species.name.slice(1)}`;
         })
 
