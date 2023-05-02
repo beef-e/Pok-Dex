@@ -50,11 +50,29 @@ document.querySelector('form').addEventListener('submit', function (event) {
                             newLore=response.flavor_text_entries[i].flavor_text.replace('\n', ' ')
                             newLore=newLore.replace('\f', ' ')
                             newLore=newLore.replace('POKéMON', 'Pokémon')
-                            console.log(newLore)
+                            //console.log(newLore)
                             document.querySelector('#pokeLore').innerText = `${newLore}`
                             i=response.flavor_text_entries.length
                         }
                     }
+
+                    if(response.evolves_from_species!=null)
+                        document.querySelector('#evolvesFrom').innerText = `Evolves from: ${response.evolves_from_species.name.charAt(0).toUpperCase() + response.evolves_from_species.name.slice(1)}`;
+                    else
+                        document.querySelector('#evolvesFrom').innerText = `Evolves from: None`;
+                })
+
+                .catch(function(){
+                    console.log("error", console.error());
+                    document.querySelector('#pokeLore').innerText = `No description found`; 
+                    document.querySelector('#pokeName').innerText= ''
+                    document.querySelector('#pokeType').innerText= ''
+                    document.querySelector('#pokeMoves').innerHTML= ''
+                    document.querySelector('#pokeStats').innerText = ''
+                    document.querySelector('#evolvesFrom').innerText = ''
+                    document.querySelector('#pokeHeight').innerText = ''
+                    document.querySelector('#pokeWeight').innerText = ''
+                    document.querySelector('#pokeimage').innerHTML = '<img src="https://www.serebii.net/pokemongo/pokemon/035.png"><p>something went wrong *_*</p>';
                 })
             //document.querySelector('#evolvesFrom').innerText = `Evolves from: ${s.species.name.charAt(0).toUpperCase() + s.species.name.slice(1)}`;
         })
@@ -65,7 +83,12 @@ document.querySelector('form').addEventListener('submit', function (event) {
             document.querySelector('#pokeName').innerText= ''
             document.querySelector('#pokeType').innerText= ''
             document.querySelector('#pokeMoves').innerHTML= ''
-            document.querySelector('#pokeimage').innerHTML = '<img src="https://www.serebii.net/pokemongo/pokemon/035.png"><p>Questo pokémon non esiste. Sicuro di averlo digitato correttamente?</p>';
+            document.querySelector('#pokeStats').innerText = ''
+            document.querySelector('#pokeLore').innerText = ''
+            document.querySelector('#evolvesFrom').innerText = ''
+            document.querySelector('#pokeHeight').innerText = ''
+            document.querySelector('#pokeWeight').innerText = ''
+            document.querySelector('#pokeimage').innerHTML = '<img src="https://www.serebii.net/pokemongo/pokemon/035.png"><p>This pokémon does not exist. Are you sure you spelled it correctly?</p>';
         })
 });
 
