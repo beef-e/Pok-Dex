@@ -1,12 +1,56 @@
 //using the pokeapi.co API
 
-let link = 'https://pokeapi.co/api/v2/pokemon/';
+let link = 'https://pokeapi.co/api/v2/pokemon';
+let allPokemon = null;
+const ex=['mr-mime', 'mime-jr']
+
+document.addEventListener('DOMContentLoaded', function (e) {
+    fetch(link + '?limit=1300')
+        .then(function (response) {
+            return response.json();
+        })
+
+        .then(function (s) {
+            allPokemon = s.results.map(value =>{
+                return {
+                    ...value,
+                    label: (value.name.charAt(0).toUpperCase() + value.name.slice(1)).replace('-', ' '),
+                }
+            }).filter(value => {
+                if(!value.name.includes('-') || ex.includes(value.name)){
+                    return value
+                }
+            })
+
+
+            document.querySelector('#pokemon').addEventListener('keyup', function (event) {
+                let v = event.currentTarget.value
+                let filtered = allPokemon.filter(pokemon => pokemon.name.includes(v))
+                document.querySelector('#autocompleteBox').innerHTML = ""
+                console.log(filtered)
+                if(v.length>2){
+                    
+                    document.querySelector('#autocompleteBox').classList.remove('is-hidden')
+                    for(let i=0; i<filtered.length; i++){
+                        document.querySelector('#autocompleteBox').innerHTML += `<a href="#" class="has-text-centered color-black">${filtered[i].label} </a>`
+                    }
+
+                    /*<img src="${filtered[i].sprites.front_default}"></img>*/
+                }
+            });
+        })
+
+        .catch(function (e) {
+            //TODO: handle error
+        })
+
+});
 
 document.querySelector('form').addEventListener('submit', function (event) {
 	event.preventDefault();
 	let pokemon = document.querySelector('#pokemon').value;
-    pokemon=pokemon.toLowerCase();
-	let newlink = link + pokemon;
+    pokemon=slugify(pokemon);
+	let newlink = link + '/' + pokemon;
     console.log(newlink);
 
 	fetch(newlink)
@@ -17,7 +61,7 @@ document.querySelector('form').addEventListener('submit', function (event) {
 
         .then(function (s){
             document.querySelector('#pokeimage').innerHTML = '<img src="' + s.sprites.front_default + '" class="max-height">';
-            document.querySelector('#pokeName').innerText=  `${s.name.charAt(0).toUpperCase() + s.name.slice(1)}`;
+            document.querySelector('#pokeName').innerText=  `${(s.name.charAt(0).toUpperCase() + s.name.slice(1)).replace('-', ' ')}`;
             let types=""
             for (let i = 0; i < s.types.length; i++) {
                 types += `${s.types[i].type.name.charAt(0).toUpperCase() + s.types[i].type.name.slice(1)}`
@@ -92,10 +136,20 @@ document.querySelector('form').addEventListener('submit', function (event) {
         })
 });
 
-/*document.querySelector('#pokemon').addEventListener('keyup', function (event) {
-    event.preventDefault();
-    if (event.keyCode === 13) {
-        event.preventDefault();
-        document.querySelector('#Invio').click();
+function slugify (str) {
+    str = str.replace(/^\s+|\s+$/g, ''); // trim
+    str = str.toLowerCase();
+  
+    // remove accents, swap ñ for n, etc
+    var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+    var to   = "aaaaeeeeiiiioooouuuunc------";
+    for (var i=0, l=from.length ; i<l ; i++) {
+        str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
     }
-});*/
+
+    str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+        .replace(/\s+/g, '-') // collapse whitespace and replace by -
+        .replace(/-+/g, '-'); // collapse dashes
+
+    return str;
+}
