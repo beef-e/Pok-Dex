@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function (e) {
 
 
             document.querySelector('#pokemon').addEventListener('keyup', function (event) {
-                let v = event.currentTarget.value
+                let v = event.currentTarget.value.toLowerCase()
                 let filtered = allPokemon.filter(pokemon => pokemon.name.includes(v))
                 document.querySelector('#autocompleteBox').innerHTML = ""
                 console.log(filtered)
@@ -36,6 +36,10 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     }
 
                     /*<img src="${filtered[i].sprites.front_default}"></img>*/
+                }
+
+                if(event.keyCode == 13){
+                    document.querySelector('#autocompleteBox').classList.add('is-hidden')
                 }
             });
         })
@@ -52,6 +56,7 @@ document.querySelector('form').addEventListener('submit', function (event) {
     pokemon=slugify(pokemon);
 	let newlink = link + '/' + pokemon;
     console.log(newlink);
+    document.querySelector('#autocompleteBox').classList.add('is-hidden')
 
 	fetch(newlink)
         .then(function (response) {
