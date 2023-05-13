@@ -32,8 +32,17 @@ document.addEventListener('DOMContentLoaded', function (e) {
                     
                     document.querySelector('#autocompleteBox').classList.remove('is-hidden')
                     for(let i=0; i<filtered.length; i++){
-                        document.querySelector('#autocompleteBox').innerHTML += `<a href="#" class="has-text-centered color-black">${filtered[i].label} </a>`
+                        document.querySelector('#autocompleteBox').innerHTML += `<a href="#" class="autocompleteElement has-text-centered color-black">${filtered[i].label}</a>`
                     }
+                    let suggerimenti = document.querySelectorAll('.autocompleteElement')
+                    suggerimenti.forEach(suggerimento => {
+                        suggerimento.addEventListener('click', function (event) {
+                            console.log("clicked")
+                            document.querySelector('#pokemon').value = event.currentTarget.innerText
+                            //document.querySelector('#autocompleteBox').classList.add('is-hidden')
+                            document.querySelector('form').dispatchEvent(new Event('submit'))
+                        })
+                    })
 
                     /*<img src="${filtered[i].sprites.front_default}"></img>*/
                 }

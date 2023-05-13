@@ -11,10 +11,6 @@ body {
 	min-height: 100vh;
 }
 
-#pokeimage {
-	text-align: center;
-}
-
 .title {
 	color: rgb(255, 56, 56);
 }
@@ -23,9 +19,22 @@ body {
 	background-color: rgb(255, 56, 56);
 }
 
+#pokeimage {
+	text-align: center;
+	position: relative;
+	z-index: 0;
+}
+
+#pokeData {
+	position: relative;
+	z-index: 0;
+}
+
 #autocompleteBox {
 	overflow: auto;
 	height: 250px;
+	position: relative;
+	z-index: 1;
 }
 
 #autocompleteBox a {
