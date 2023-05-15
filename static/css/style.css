@@ -60,3 +60,10 @@ body {
 .field.has-addons {
 	justify-content: center;
 }
+
+#pokeMoves ul,
+#pokeStats ul {
+	list-style: none;
+	text-align: center;
+	margin-left: 0;
+}
