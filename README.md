@@ -23,8 +23,8 @@ Such as Weight, Height and Type
 
 #### Coming Soon:
 
-- Adding evolution Chain
 - ✔️ Autocompleting
+- Adding evolution Chain
 - Adding possibility to show multiple images of the Pokémon
 - Introduction of accounts and authentication
 - Creation of an App available on mobile
