@@ -122,14 +122,8 @@ document.querySelector('form').addEventListener('submit', function (event) {
 
                 .catch(function(){
                     console.log("error", console.error());
+                    cleanup()
                     document.querySelector('#pokeLore').innerText = `No description found`; 
-                    document.querySelector('#pokeName').innerText= ''
-                    document.querySelector('#pokeType').innerText= ''
-                    document.querySelector('#pokeMoves').innerHTML= ''
-                    document.querySelector('#pokeStats').innerText = ''
-                    document.querySelector('#evolvesFrom').innerText = ''
-                    document.querySelector('#pokeHeight').innerText = ''
-                    document.querySelector('#pokeWeight').innerText = ''
                     document.querySelector('#pokeimage').innerHTML = '<img src="https://www.serebii.net/pokemongo/pokemon/035.png"><p>something went wrong *_*</p>';
                 })
             //document.querySelector('#evolvesFrom').innerText = `Evolves from: ${s.species.name.charAt(0).toUpperCase() + s.species.name.slice(1)}`;
@@ -138,14 +132,7 @@ document.querySelector('form').addEventListener('submit', function (event) {
         .catch(function(){
             console.log("error", console.error());
             console.error()
-            document.querySelector('#pokeName').innerText= ''
-            document.querySelector('#pokeType').innerText= ''
-            document.querySelector('#pokeMoves').innerHTML= ''
-            document.querySelector('#pokeStats').innerText = ''
-            document.querySelector('#pokeLore').innerText = ''
-            document.querySelector('#evolvesFrom').innerText = ''
-            document.querySelector('#pokeHeight').innerText = ''
-            document.querySelector('#pokeWeight').innerText = ''
+            cleanup()
             document.querySelector('#pokeimage').innerHTML = '<img src="https://www.serebii.net/pokemongo/pokemon/035.png"><p>This pokémon does not exist. Are you sure you spelled it correctly?</p>';
         })
 });
@@ -166,4 +153,15 @@ function slugify (str) {
         .replace(/-+/g, '-'); // collapse dashes
 
     return str;
+}
+
+function cleanup(){
+    document.querySelector('#pokeName').innerText= ''
+    document.querySelector('#pokeType').innerText= ''
+    document.querySelector('#pokeMoves').innerHTML= ''
+    document.querySelector('#pokeStats').innerText = ''
+    document.querySelector('#pokeLore').innerText = ''
+    document.querySelector('#evolvesFrom').innerText = ''
+    document.querySelector('#pokeHeight').innerText = ''
+    document.querySelector('#pokeWeight').innerText = ''
 }
